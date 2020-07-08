@@ -11,7 +11,7 @@ char **devide(char* str, int size) {
     int flag = 0;
     a = (char**)malloc(sizeof(char*) * 5);
     for (i = 0; i < size;) {
-        if (str[i] == ' '&&!flag) {    //分隔符
+        if (str[i] == '_'&&!flag) {    //分隔符
             temp = (char*)malloc(i + 1 - l);    //加结束符
             memset(temp, 0, i + 1 - l);
             memcpy(temp, str + l, i - l);
@@ -23,8 +23,7 @@ char **devide(char* str, int size) {
             i++;
             l = i;
             continue;
-        }
-        else if (str[i] == '\"') {
+        }else if (str[i] == '\"') {
             if (flag) {
                 temp = (char*)malloc(i + 1 - l);    //加结束符
                 memset(temp, 0, i + 1 - l);
@@ -45,13 +44,11 @@ char **devide(char* str, int size) {
         i++;
     }
     return a;
-
 }
 
-
-int main() {
+void main() {
     int i = 0;
-    char* str = "abc de \"fg hi\" \"gk lm n o\" \"pq rst uvw xyz\"";
+    char* str = "ab_c_\"abc_adadfasd\"_def_\"dddd\"";
     int size = strlen(str);
     char** a = devide(str, size);
     for (i = 0; i < 5; i++) {
@@ -65,6 +62,4 @@ int main() {
     }
     free(a);
     a = NULL;
-
-    return 0;
 }
